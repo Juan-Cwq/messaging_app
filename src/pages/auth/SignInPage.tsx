@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowLeftIcon, LockClosedIcon, UserIcon } from "@heroicons/react/24/outline";
 import { useSession } from "../../context/SessionContext";
 import supabase from "../../supabase";
-import { Button, Input, Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, ThemeToggle } from "../../components/ui";
+import { Button, Input, Card, CardHeader, CardContent, CardFooter, ThemeToggle } from "../../components/ui";
 import { usernameToPseudoEmail } from "../../lib/identity";
 
 const SignInPage = () => {
@@ -52,7 +52,7 @@ const SignInPage = () => {
   return (
     <main className="min-h-screen bg-base-100 flex flex-col">
       {/* Header */}
-      <header className="flex items-center justify-between p-4">
+      <header className="flex items-center justify-between p-4 max-w-6xl mx-auto w-full">
         <Link
           to="/"
           className="btn btn-ghost gap-2"
@@ -64,24 +64,25 @@ const SignInPage = () => {
       </header>
 
       {/* Main Content */}
-      <div className="flex-1 flex items-center justify-center p-4">
+      <section className="w-full max-w-lg mx-auto px-4 py-12 md:py-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
-          className="w-full max-w-md"
         >
           <Card variant="bordered" padding="lg">
             <CardHeader>
-              <div className="flex items-center gap-3 mb-2">
-                <div className="p-2 rounded-lg bg-primary/10">
-                  <LockClosedIcon className="h-6 w-6 text-primary" />
+              <div className="mb-6">
+                <div className="flex items-center gap-4 mb-3">
+                  <div className="p-3 rounded-xl bg-primary/10">
+                    <LockClosedIcon className="h-8 w-8 text-primary" />
+                  </div>
+                  <h1 className="text-3xl font-bold">Welcome Back</h1>
                 </div>
-                <CardTitle as="h1">Welcome Back</CardTitle>
+                <p className="text-base text-base-content/60 ml-1">
+                  Sign in with your anonymous identity
+                </p>
               </div>
-              <CardDescription>
-                Sign in with your anonymous identity
-              </CardDescription>
             </CardHeader>
 
             <CardContent>
@@ -154,7 +155,7 @@ const SignInPage = () => {
             Your connection is end-to-end encrypted
           </motion.p>
         </motion.div>
-      </div>
+      </section>
     </main>
   );
 };

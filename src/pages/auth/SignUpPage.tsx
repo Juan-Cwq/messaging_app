@@ -10,7 +10,6 @@ import {
   Card,
   CardHeader,
   CardTitle,
-  CardDescription,
   CardContent,
   CardFooter,
   ThemeToggle,
@@ -135,7 +134,7 @@ const SignUpPage = () => {
   return (
     <main className="min-h-screen bg-base-100 flex flex-col">
       {/* Header */}
-      <header className="flex items-center justify-between p-4">
+      <header className="flex items-center justify-between p-4 max-w-6xl mx-auto w-full">
         <Link to="/" className="btn btn-ghost gap-2">
           <ArrowLeftIcon className="h-4 w-4" />
           Home
@@ -144,12 +143,11 @@ const SignUpPage = () => {
       </header>
 
       {/* Main Content */}
-      <div className="flex-1 flex items-center justify-center p-4">
+      <section className="w-full max-w-lg mx-auto px-4 py-12 md:py-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
-          className="w-full max-w-md"
         >
           {step !== "complete" && (
             <>
@@ -158,19 +156,17 @@ const SignUpPage = () => {
                 {steps.map((s, index) => (
                   <div key={s.id} className="flex items-center">
                     <div
-                      className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-colors ${
-                        index <= currentStepIndex
-                          ? "bg-primary text-primary-content"
-                          : "bg-base-300 text-base-content/40"
-                      }`}
+                      className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-colors ${index <= currentStepIndex
+                        ? "bg-primary text-primary-content"
+                        : "bg-base-300 text-base-content/40"
+                        }`}
                     >
                       {index + 1}
                     </div>
                     {index < steps.length - 1 && (
                       <div
-                        className={`w-12 h-0.5 mx-1 transition-colors ${
-                          index < currentStepIndex ? "bg-primary" : "bg-base-300"
-                        }`}
+                        className={`w-12 h-0.5 mx-1 transition-colors ${index < currentStepIndex ? "bg-primary" : "bg-base-300"
+                          }`}
                       />
                     )}
                   </div>
@@ -194,9 +190,9 @@ const SignUpPage = () => {
                           </div>
                           <CardTitle as="h1">Create Identity</CardTitle>
                         </div>
-                        <CardDescription>
+                        <p className="text-sm text-base-content/60 mt-1">
                           Choose an anonymous username. No email or phone required.
-                        </CardDescription>
+                        </p>
                       </CardHeader>
 
                       <CardContent>
@@ -235,9 +231,9 @@ const SignUpPage = () => {
                           </div>
                           <CardTitle as="h1">Secure Password</CardTitle>
                         </div>
-                        <CardDescription>
+                        <p className="text-sm text-base-content/60 mt-1">
                           Create a strong password to protect your account.
-                        </CardDescription>
+                        </p>
                       </CardHeader>
 
                       <CardContent>
@@ -311,9 +307,9 @@ const SignUpPage = () => {
                     >
                       <CardHeader>
                         <CardTitle as="h1">Recovery Key</CardTitle>
-                        <CardDescription>
+                        <p className="text-sm text-base-content/60 mt-1">
                           Save this key to recover your account if you forget your password.
-                        </CardDescription>
+                        </p>
                       </CardHeader>
 
                       <CardContent>
@@ -398,7 +394,7 @@ const SignUpPage = () => {
             </motion.p>
           )}
         </motion.div>
-      </div>
+      </section>
     </main>
   );
 };
