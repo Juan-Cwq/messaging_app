@@ -10,6 +10,7 @@ import {
   Card,
   CardHeader,
   CardTitle,
+  CardDescription,
   CardContent,
   CardFooter,
   ThemeToggle,
@@ -191,9 +192,9 @@ const SignUpPage = () => {
                           </div>
                           <CardTitle as="h1">Create Identity</CardTitle>
                         </div>
-                        <p className="text-sm text-base-content/60 mt-1">
+                        <CardDescription className="text-sm mt-1" style={{ wordBreak: 'normal', maxWidth: 'none', width: '100%' }}>
                           Choose an anonymous username. No email or phone required.
-                        </p>
+                        </CardDescription>
                       </CardHeader>
 
                       <CardContent>
@@ -232,9 +233,9 @@ const SignUpPage = () => {
                           </div>
                           <CardTitle as="h1">Secure Password</CardTitle>
                         </div>
-                        <p className="text-sm text-base-content/60 mt-1">
+                        <CardDescription className="text-sm mt-1" style={{ wordBreak: 'normal', maxWidth: 'none', width: '100%' }}>
                           Create a strong password to protect your account.
-                        </p>
+                        </CardDescription>
                       </CardHeader>
 
                       <CardContent>
@@ -308,9 +309,9 @@ const SignUpPage = () => {
                     >
                       <CardHeader>
                         <CardTitle as="h1">Recovery Key</CardTitle>
-                        <p className="text-sm text-base-content/60 mt-1">
+                        <CardDescription className="text-sm mt-1" style={{ wordBreak: 'normal', maxWidth: 'none', width: '100%' }}>
                           Save this key to recover your account if you forget your password.
-                        </p>
+                        </CardDescription>
                       </CardHeader>
 
                       <CardContent>

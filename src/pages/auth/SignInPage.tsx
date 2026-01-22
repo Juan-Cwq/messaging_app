@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowLeftIcon, LockClosedIcon, UserIcon } from "@heroicons/react/24/outline";
 import { useSession } from "../../context/SessionContext";
 import supabase from "../../supabase";
-import { Button, Input, Card, CardHeader, CardContent, CardFooter, ThemeToggle } from "../../components/ui";
+import { Button, Input, Card, CardHeader, CardDescription, CardContent, CardFooter, ThemeToggle } from "../../components/ui";
 import { usernameToPseudoEmail } from "../../lib/identity";
 
 const SignInPage = () => {
@@ -80,9 +80,9 @@ const SignInPage = () => {
                   </div>
                   <h1 className="text-3xl font-bold">Welcome Back</h1>
                 </div>
-                <p className="text-base text-base-content/60 ml-1">
+                <CardDescription className="text-base ml-1" style={{ wordBreak: 'normal', maxWidth: 'none', width: '100%' }}>
                   Sign in with your anonymous identity
-                </p>
+                </CardDescription>
               </div>
             </CardHeader>
 
