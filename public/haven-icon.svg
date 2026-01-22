@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="haven-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0D1B2A"/>
+      <stop offset="25%" stop-color="#1B263B"/>
+      <stop offset="50%" stop-color="#415A77"/>
+      <stop offset="75%" stop-color="#778DA9"/>
+      <stop offset="100%" stop-color="#E0E1DD"/>
+    </linearGradient>
+  </defs>
+  <!-- Shield shape representing security/sanctuary -->
+  <path d="M32 4L8 16v16c0 14.4 10.24 27.84 24 32 13.76-4.16 24-17.6 24-32V16L32 4z" fill="url(#haven-gradient)"/>
+  <!-- Lock symbol inside -->
+  <rect x="24" y="26" width="16" height="14" rx="2" fill="#E0E1DD"/>
+  <path d="M28 26v-4a4 4 0 118 0v4" stroke="#E0E1DD" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <circle cx="32" cy="33" r="2" fill="#0D1B2A"/>
+  <path d="M32 35v3" stroke="#0D1B2A" stroke-width="2" stroke-linecap="round"/>
+</svg>

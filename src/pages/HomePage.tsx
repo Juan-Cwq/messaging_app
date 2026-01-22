@@ -1,43 +1,172 @@
 import { Link } from "react-router-dom";
-import supabase from "../supabase";
+import { motion } from "framer-motion";
+import { ShieldCheckIcon, LockClosedIcon, UserPlusIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 import { useSession } from "../context/SessionContext";
+import supabase from "../supabase";
+import { Button, Card, CardContent, ThemeToggle } from "../components/ui";
+import { pseudoEmailToUsername } from "../lib/identity";
 
 const HomePage = () => {
   const { session } = useSession();
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+  };
+
   return (
-    <main>
-      <section className="main-container">
-        <h1 className="header-text">React Supabase Auth Template</h1>
-        <p>Current User : {session?.user.email || "None"}</p>
-        {session ? (
-          <button onClick={() => supabase.auth.signOut()}>Sign Out</button>
-        ) : (
-          <Link to="/auth/sign-in">Sign In</Link>
-        )}
-        <Link to="/protected">Protected Page 🛡️</Link>
-        <div id="divider"></div>
-        <Link
-          to="https://github.com/mmvergara/react-supabase-auth-template"
-          target="_blank"
-          rel="noreferrer noopener"
-          id="github-repo-link"
+    <main className="min-h-screen bg-base-100">
+      {/* Header */}
+      <header className="flex items-center justify-between p-4 max-w-6xl mx-auto">
+        <div className="flex items-center gap-2">
+          <img src="/haven-icon.svg" alt="Haven" className="h-8 w-8" />
+          <span className="font-display text-xl font-semibold">Haven</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          {session ? (
+            <Button variant="ghost" onClick={handleSignOut}>
+              Sign Out
+            </Button>
+          ) : (
+            <Link to="/auth/sign-in">
+              <Button variant="ghost">Sign In</Button>
+            </Link>
+          )}
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section className="max-w-6xl mx-auto px-4 py-16 md:py-24">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            x="0px"
-            y="0px"
-            width="30"
-            height="50"
-            viewBox="0 0 64 64"
-          >
-            <path
-              fill="#fff"
-              d="M32 6C17.641 6 6 17.641 6 32c0 12.277 8.512 22.56 19.955 25.286-.592-.141-1.179-.299-1.755-.479V50.85c0 0-.975.325-2.275.325-3.637 0-5.148-3.245-5.525-4.875-.229-.993-.827-1.934-1.469-2.509-.767-.684-1.126-.686-1.131-.92-.01-.491.658-.471.975-.471 1.625 0 2.857 1.729 3.429 2.623 1.417 2.207 2.938 2.577 3.721 2.577.975 0 1.817-.146 2.397-.426.268-1.888 1.108-3.57 2.478-4.774-6.097-1.219-10.4-4.716-10.4-10.4 0-2.928 1.175-5.619 3.133-7.792C19.333 23.641 19 22.494 19 20.625c0-1.235.086-2.751.65-4.225 0 0 3.708.026 7.205 3.338C28.469 19.268 30.196 19 32 19s3.531.268 5.145.738c3.497-3.312 7.205-3.338 7.205-3.338.567 1.474.65 2.99.65 4.225 0 2.015-.268 3.19-.432 3.697C46.466 26.475 47.6 29.124 47.6 32c0 5.684-4.303 9.181-10.4 10.4 1.628 1.43 2.6 3.513 2.6 5.85v8.557c-.576.181-1.162.338-1.755.479C49.488 54.56 58 44.277 58 32 58 17.641 46.359 6 32 6zM33.813 57.93C33.214 57.972 32.61 58 32 58 32.61 58 33.213 57.971 33.813 57.93zM37.786 57.346c-1.164.265-2.357.451-3.575.554C35.429 57.797 36.622 57.61 37.786 57.346zM32 58c-.61 0-1.214-.028-1.813-.07C30.787 57.971 31.39 58 32 58zM29.788 57.9c-1.217-.103-2.411-.289-3.574-.554C27.378 57.61 28.571 57.797 29.788 57.9z"
-            ></path>
-          </svg>
-          Star us on Github 🌟
-        </Link>
+          <h1 className="text-display text-5xl md:text-7xl lg:text-8xl font-bold mb-8 tracking-tighter leading-none">
+            <span className="text-haven-gradient">Private</span> Communication
+            <br />
+            <span className="text-base-content">For Everyone</span>
+          </h1>
+
+          <p className="text-base md:text-lg text-base-content/60 max-w-4xl mx-auto mb-12 leading-relaxed">
+            Haven is a sanctuary for secure messaging. End-to-end encrypted, anonymous, and built for those who value their privacy.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            {session ? (
+              <Link to="/protected">
+                <Button size="lg" rightIcon={<ArrowRightIcon className="h-5 w-5" />}>
+                  Go to Dashboard
+                </Button>
+              </Link>
+            ) : (
+              <>
+                <Link to="/auth/sign-up">
+                  <Button size="lg" rightIcon={<UserPlusIcon className="h-5 w-5" />}>
+                    Get Started
+                  </Button>
+                </Link>
+                <Link to="/auth/sign-in">
+                  <Button variant="outline" size="lg">
+                    Sign In
+                  </Button>
+                </Link>
+              </>
+            )}
+          </div>
+        </motion.div>
+
+        {/* User Info (if logged in) */}
+        {session && (() => {
+          const username = session.user.user_metadata?.username ||
+            pseudoEmailToUsername(session.user.email || "");
+          return (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="mt-12 max-w-md mx-auto"
+            >
+              <Card variant="bordered">
+                <CardContent className="flex items-center gap-4">
+                  <div className="avatar placeholder">
+                    <div className="bg-primary text-primary-content rounded-full w-12">
+                      <span className="text-lg">
+                        {username.charAt(0).toUpperCase()}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-medium truncate">{username}</p>
+                    <p className="text-sm text-base-content/60">Secure session active</p>
+                  </div>
+                  <div className="badge badge-success gap-1">
+                    <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
+                    Online
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          );
+        })()}
+
+        {/* Features */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+          className="grid md:grid-cols-3 gap-6 mt-20"
+        >
+          <Card variant="ghost" padding="lg" className="text-center">
+            <div className="flex justify-center mb-4">
+              <div className="p-3 rounded-xl bg-primary/10">
+                <LockClosedIcon className="h-8 w-8 text-primary" />
+              </div>
+            </div>
+            <h3 className="text-lg font-semibold mb-2">End-to-End Encrypted</h3>
+            <p className="text-base-content/60 text-sm">
+              Your messages are encrypted before they leave your device.
+              Only you and your recipient can read them.
+            </p>
+          </Card>
+
+          <Card variant="ghost" padding="lg" className="text-center">
+            <div className="flex justify-center mb-4">
+              <div className="p-3 rounded-xl bg-primary/10">
+                <ShieldCheckIcon className="h-8 w-8 text-primary" />
+              </div>
+            </div>
+            <h3 className="text-lg font-semibold mb-2">Anonymous by Design</h3>
+            <p className="text-base-content/60 text-sm">
+              No phone number required. Create an account with just a
+              username and password.
+            </p>
+          </Card>
+
+          <Card variant="ghost" padding="lg" className="text-center">
+            <div className="flex justify-center mb-4">
+              <div className="p-3 rounded-xl bg-primary/10">
+                <svg className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+            </div>
+            <h3 className="text-lg font-semibold mb-2">Disappearing Messages</h3>
+            <p className="text-base-content/60 text-sm">
+              Set messages to automatically delete. Leave no trace of
+              your conversations.
+            </p>
+          </Card>
+        </motion.div>
       </section>
+
+      {/* Footer */}
+      <footer className="border-t border-base-300 py-8 mt-12">
+        <div className="max-w-6xl mx-auto px-4 text-center text-sm text-base-content/40">
+          <p>Haven — Your conversations are yours alone.</p>
+        </div>
+      </footer>
     </main>
   );
 };
