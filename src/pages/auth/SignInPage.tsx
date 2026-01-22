@@ -64,11 +64,12 @@ const SignInPage = () => {
       </header>
 
       {/* Main Content */}
-      <section className="w-full max-w-lg mx-auto px-4 py-12 md:py-20">
+      <section className="w-full max-w-xl mx-auto px-4 py-12 md:py-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
+          className="w-full"
         >
           <Card variant="bordered" padding="lg">
             <CardHeader>
