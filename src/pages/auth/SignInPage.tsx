@@ -122,7 +122,7 @@ const SignInPage = () => {
                 </Button>
 
                 {/* Recovery Option */}
-                <div className="text-center">
+                <div className="text-center w-full">
                   <Link
                     to="/auth/recover"
                     className="text-sm text-base-content/60 hover:text-primary transition-colors"
@@ -133,8 +133,8 @@ const SignInPage = () => {
               </form>
             </CardContent>
 
-            <CardFooter className="justify-center">
-              <p className="text-sm text-base-content/60">
+            <CardFooter className="justify-center w-full">
+              <p className="text-sm text-base-content/60 w-full text-center">
                 Don't have an account?{" "}
                 <Link
                   to="/auth/sign-up"
@@ -151,7 +151,7 @@ const SignInPage = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="text-center text-xs text-base-content/40 mt-6"
+            className="text-center text-xs text-base-content/40 mt-6 w-full"
           >
             Your connection is end-to-end encrypted
           </motion.p>

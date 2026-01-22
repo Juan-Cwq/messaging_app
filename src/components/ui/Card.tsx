@@ -48,9 +48,9 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
         whileHover={
           hoverable
             ? {
-                y: -4,
-                boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
-              }
+              y: -4,
+              boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
+            }
             : undefined
         }
         transition={{ duration: 0.2, ease: "easeOut" }}
@@ -64,11 +64,11 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
 
 Card.displayName = "Card";
 
-interface CardHeaderProps extends HTMLAttributes<HTMLDivElement> {}
+interface CardHeaderProps extends HTMLAttributes<HTMLDivElement> { }
 
 export const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
   ({ children, className, ...props }, ref) => (
-    <div ref={ref} className={clsx("mb-4", className)} {...props}>
+    <div ref={ref} className={clsx("mb-4 w-full", className)} {...props}>
       {children}
     </div>
   )
@@ -94,13 +94,13 @@ export const CardTitle = forwardRef<HTMLHeadingElement, CardTitleProps>(
 
 CardTitle.displayName = "CardTitle";
 
-interface CardDescriptionProps extends HTMLAttributes<HTMLParagraphElement> {}
+interface CardDescriptionProps extends HTMLAttributes<HTMLParagraphElement> { }
 
 export const CardDescription = forwardRef<HTMLParagraphElement, CardDescriptionProps>(
   ({ children, className, ...props }, ref) => (
     <p
       ref={ref}
-      className={clsx("text-sm text-base-content/60 mt-1", className)}
+      className={clsx("text-sm text-base-content/60 mt-1 w-full", className)}
       {...props}
     >
       {children}
@@ -110,7 +110,7 @@ export const CardDescription = forwardRef<HTMLParagraphElement, CardDescriptionP
 
 CardDescription.displayName = "CardDescription";
 
-interface CardContentProps extends HTMLAttributes<HTMLDivElement> {}
+interface CardContentProps extends HTMLAttributes<HTMLDivElement> { }
 
 export const CardContent = forwardRef<HTMLDivElement, CardContentProps>(
   ({ children, className, ...props }, ref) => (
@@ -122,7 +122,7 @@ export const CardContent = forwardRef<HTMLDivElement, CardContentProps>(
 
 CardContent.displayName = "CardContent";
 
-interface CardFooterProps extends HTMLAttributes<HTMLDivElement> {}
+interface CardFooterProps extends HTMLAttributes<HTMLDivElement> { }
 
 export const CardFooter = forwardRef<HTMLDivElement, CardFooterProps>(
   ({ children, className, ...props }, ref) => (

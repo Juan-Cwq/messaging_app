@@ -338,8 +338,8 @@ const SignUpPage = () => {
                 </AnimatePresence>
 
                 {step !== "recovery" && (
-                  <CardFooter className="justify-center">
-                    <p className="text-sm text-base-content/60">
+                  <CardFooter className="justify-center w-full">
+                    <p className="text-sm text-base-content/60 w-full text-center">
                       Already have an account?{" "}
                       <Link
                         to="/auth/sign-in"
@@ -390,7 +390,7 @@ const SignUpPage = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="text-center text-xs text-base-content/40 mt-6"
+              className="text-center text-xs text-base-content/40 mt-6 w-full"
             >
               No personal information required. Your identity is yours alone.
             </motion.p>
